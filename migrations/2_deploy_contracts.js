@@ -1,6 +1,5 @@
-var EthereumDIDRegistry = artifacts.require("EthereumDIDRegistry");
+const UsernameToken = artifacts.require('UsernameToken');
 
 module.exports = function(deployer) {
-    // deployment steps
-    deployer.deploy(EthereumDIDRegistry);
-}
+    deployer.deploy(UsernameToken);
+};

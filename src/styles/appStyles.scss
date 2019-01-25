@@ -1,0 +1,21 @@
+@import '~bulma/bulma';
+//@import '~bulma-extensions/src/sass/index';
+
+@import 'themeColors';
+
+$theme-font: Arial, Helvetica, sans-serif;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font: $theme-font;
+  background-color: $off-white;
+}
+
+.topHeader {
+  margin-top: 10px;
+}
+
+.text-color-off-white {
+  color: $off-white;
+}
