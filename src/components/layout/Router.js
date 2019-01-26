@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import HowItWorks from './../HowItWorks';
-import GettingStarted from './../GettingStarted';
-import RegisteringWithIPLS from './../RegisteringWithIPLS';
+import HowItWorks from '../HowItWorks';
+import GettingStarted from '../GettingStarted';
+import RegisteringWithIPLS from '../RegisteringWithIPLS/RegisteringWithIPLS';
 import YourProfile from "../YourProfile";
 import YourContactsList from "../YourContactsList";
 

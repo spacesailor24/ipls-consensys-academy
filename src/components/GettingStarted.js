@@ -16,7 +16,7 @@ import ThreeBoxGithub5 from '../images/3box-github-5.png';
 import ThreeBoxGithub6 from '../images/3box-github-6.png';
 import ThreeBoxCompleteProfile from '../images/3box-complete-profile.png';
 import ThreeBoxUpdatedProfile from '../images/3box-updated-profile.png';
-import MetamaskConnectionRequest from '../images/metamask-connection-request.png';
+// import MetamaskConnectionRequest from '../images/metamask-connection-request.png';
 
 const GettingStarted = () => (
     <section>
@@ -221,7 +221,7 @@ const GettingStarted = () => (
             </div>
 
             <div className="box has-text-centered">
-                <p>Again, feel free to enter as much or a little information you'd like, but the more you fill out, the more you make it <em>your</em> Ethereum Profile!</p>
+                <p>Again, feel free to enter as much or as little information you'd like, but the more you fill out, the more you make it <em>your</em> Ethereum Profile!</p>
 
                 <br/>
 
@@ -246,7 +246,7 @@ const GettingStarted = () => (
                 </figure>
             </div>
 
-            <div className="box has-text-centered">
+            <div className="box has-text-centered margin-bottom-md">
                 <p>When you're finished admiring your beautiful Ethereum Profile, go ahead and continue on to <a href="/registering-with-ipls">Registering with IPLS</a></p>
             </div>
         </div>

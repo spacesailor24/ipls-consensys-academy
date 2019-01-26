@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './layout/Header';
-import Content from './layout/Content';
-import Router from "./layout/Router";
+import Header from './Header';
+import Content from './Content';
+import Router from "./Router";
 
 const Layout = () => (
     <div>

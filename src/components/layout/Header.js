@@ -13,7 +13,7 @@ const Header = (props) => (
             <div className="container">
                 <div className="is-pulled-right">
                     <span>
-                      <a href="https://github.com/spacesailor24/ipls" target="_blank" className="button is-inverted">
+                      <a href="https://github.com/spacesailor24/ipls" target="_blank" className="button">
                         <span className="icon">
                           <FontAwesomeIcon icon={faGithub}/>
                         </span>
@@ -24,12 +24,12 @@ const Header = (props) => (
             </div>
         </div>
 
-        <div className="hero-body">
+        <div className="hero-body ">
             <div className="container has-text-centered">
-                <h1 className="title">
+                <h1 className="title text-color-off-white">
                     IPLS
                 </h1>
-                <h2 className="subtitle">
+                <h2 className="subtitle text-color-off-white">
                     The Interplanetary Look-up Service
                 </h2>
             </div>
@@ -40,19 +40,39 @@ const Header = (props) => (
                 <div className="container">
                     <ul>
                         <li className={`${props.location.pathname === '/' ? 'is-active' : ''}`}>
-                            <Link to="/">How it Works</Link>
+                            <Link to="/">
+                                <span className={`${props.location.pathname === '/' ? '' : 'text-color-off-white'}`}>
+                                    How it Works
+                                </span>
+                            </Link>
                         </li>
                         <li className={`${props.location.pathname === '/getting-started' ? 'is-active' : ''}`}>
-                            <Link to="/getting-started">Getting Started</Link>
+                            <Link to="/getting-started">
+                                <span className={`${props.location.pathname === '/getting-started' ? '' : 'text-color-off-white'}`}>
+                                    Getting Started
+                                </span>
+                            </Link>
                         </li>
                         <li className={`${props.location.pathname === '/registering-with-ipls' ? 'is-active' : ''}`}>
-                            <Link to="/registering-with-ipls">Registering with IPLS</Link>
+                            <Link to="/registering-with-ipls">
+                                <span className={`${props.location.pathname === '/registering-with-ipls' ? '' : 'text-color-off-white'}`}>
+                                    Registering with IPLS
+                                </span>
+                            </Link>
                         </li>
                         <li className={`${props.location.pathname === '/your-profile' ? 'is-active' : ''}`}>
-                            <Link to="/your-profile">Your Profile</Link>
+                            <Link to="/your-profile">
+                                <span className={`${props.location.pathname === '/your-profile' ? '' : 'text-color-off-white'}`}>
+                                    Your Profile
+                                </span>
+                            </Link>
                         </li>
                         <li className={`${props.location.pathname === '/your-contacts-list' ? 'is-active' : ''}`}>
-                            <Link to="/your-contacts-list">Your Contacts List</Link>
+                            <Link to="/your-contacts-list">
+                                <span className={`${props.location.pathname === '/your-contacts-list' ? '' : 'text-color-off-white'}`}>
+                                    Your Contacts List
+                                </span>
+                            </Link>
                         </li>
                     </ul>
                 </div>

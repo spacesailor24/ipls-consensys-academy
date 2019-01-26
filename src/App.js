@@ -3,7 +3,7 @@ import React, { Component} from "react";
 import {hot} from "react-hot-loader";
 
 import './styles/appStyles.scss';
-import Layout from "./app/Layout";
+import Layout from "./components/layout/Layout";
 
 class App extends Component{
     constructor(props) {
