@@ -47,6 +47,7 @@ class ConnectedRegistrationFlow extends Component {
             username: '',
             usernameSearchIsLoading: false,
             userNameIsTaken: null,
+            registeringUser: false,
             addingUsernameTo3BoxProfile: false,
             usernameHasBeenAddedTo3BoxProfile: false
         };
@@ -79,16 +80,25 @@ class ConnectedRegistrationFlow extends Component {
         });
     }
 
+    async users3BoxFinishedSyncing(users3Box) {
+        await users3Box.public.set('ipls.username', this.props.registeredUser.username);
+        this.setState({...this.state, addingUsernameTo3BoxProfile: false, usernameHasBeenAddedTo3BoxProfile: true})
+    }
+
     async addUsernameTo3BoxProfile() {
         try {
-            const box = await ThreeBox.openBox(this.props.accounts[0], this.props.web3.currentProvider);
-            box.onSyncDone();
+            this.setState({...this.state, addingUsernameTo3BoxProfile: true});
+            const users3Box = await ThreeBox.openBox(this.props.accounts[0], this.props.web3.currentProvider);
+            users3Box.onSyncDone(() => {
+                this.users3BoxFinishedSyncing(users3Box);
+            });
         } catch(e) {
             console.log('addUsernameTo3BoxProfile Error:', e);
         }
     }
 
     async registerUsername() {
+        this.setState({...this.state, registeringUser: true});
         const username = this.state.username;
         const threeBoxDID = this.props.threeBoxProfile.ethereum_proof.linked_did;
 
@@ -102,7 +112,7 @@ class ConnectedRegistrationFlow extends Component {
 
             if (has(res.events, 'Transfer')) {
                 this.props.setRegisteredUser({username, threeBoxDID});
-                this.setState({...this.state, username: ''});
+                this.setState({...this.state, username: '', registeringUser: false});
                 this.addUsernameTo3BoxProfile();
             }
         } catch(e) {
@@ -114,12 +124,13 @@ class ConnectedRegistrationFlow extends Component {
         let usernameAvailability;
         let registerUsernameButton;
         let userHasBeenRegistered;
+        let addingUsernameTo3BoxProfile;
 
-        if (this.state.username !== '') {
-            usernameAvailability = <UsernameAvailability username={this.state.username} usernameIsTaken={this.state.userNameIsTaken}/>;
+        if (!isEmpty(this.state.username)) {
+            usernameAvailability = <UsernameAvailability username={this.state.username} userNameIsTaken={this.state.userNameIsTaken}/>;
         }
 
-        if (this.state.username !== '' && !this.state.userNameIsTaken) {
+        if (!isEmpty(this.state.username) && !this.state.userNameIsTaken) {
             registerUsernameButton = <a
                 onClick={this.registerUsername}
                 className="button is-fullwidth is-success is-outlined">Register Username</a>;
@@ -127,6 +138,9 @@ class ConnectedRegistrationFlow extends Component {
 
         if (this.props.registeredUser !== null) {
             userHasBeenRegistered= <UserHasBeenRegistered registeredUser={this.props.registeredUser}/>;
+            addingUsernameTo3BoxProfile = <AddingUsernameTo3BoxProfile
+                addingUsernameTo3BoxProfile={this.state.addingUsernameTo3BoxProfile}
+                usernameHasBeenAddedTo3BoxProfile={this.state.usernameHasBeenAddedTo3BoxProfile}/>;
         }
 
         return (
@@ -152,46 +166,56 @@ class ConnectedRegistrationFlow extends Component {
                 </div>
 
                 <div className="box has-text-centered">
-                    <p>Now the fun part...</p>
+                    {
+                        this.state.registeringUser ?
+                            <div className="columns">
+                                <div className="column is-offset-5"></div>
+                                <div className="column">
+                                    <div className="spinner"></div>
+                                </div>
+                                <div className="column is-offset-5"></div>
+                            </div> :
+                            <span>
+                                <p>Now the fun part...</p>
 
-                    <br/>
+                                <br/>
 
-                    <div className="field is-horizontal">
-                        <div className="field-label is-normal">
-                            <label className="label">Your Desired Username</label>
-                        </div>
+                                <div className="field is-horizontal">
+                                    <div className="field-label is-normal">
+                                        <label className="label">Your Desired Username</label>
+                                    </div>
 
-                        <div className="field-body">
-                            <div className="field">
-                                <p className={`control has-icons-left ${this.state.usernameSearchIsLoading ? 'is-loading' : ''}`}>
-                                    <span className="icon is-left">
-                                      <FontAwesomeIcon icon={faEthereum}/>
-                                    </span>
-                                    <input
-                                        type="text"
-                                        className={
-                                            `input ${this.state.userNameIsTaken ? 'is-danger' : ''}
-                                            ${!this.state.userNameIsTaken && !isEmpty(this.state.username) ? 'is-success' : ''}
-                                        `}
-                                        value={this.state.username} onChange={this.handleUsernameChange}/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                                    <div className="field-body">
+                                        <div className="field">
+                                            <p className={`control has-icons-left ${this.state.usernameSearchIsLoading ? 'is-loading' : ''}`}>
+                                                <span className="icon is-left">
+                                                  <FontAwesomeIcon icon={faEthereum}/>
+                                                </span>
+                                                <input
+                                                    type="text"
+                                                    className={
+                                                        `input ${this.state.userNameIsTaken ? 'is-danger' : ''}
+                                                        ${!this.state.userNameIsTaken && !isEmpty(this.state.username) ? 'is-success' : ''}
+                                                    `}
+                                                    value={this.state.username} onChange={this.handleUsernameChange}/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    {usernameAvailability}
+                                        {usernameAvailability}
 
-                    <br/>
+                                        <br/>
 
-                    {registerUsernameButton}
+                                        {registerUsernameButton}
+                            </span>
+                    }
 
                 </div>
 
                 {userHasBeenRegistered}
 
-                {/*<AddingUsernameTo3BoxProfile*/}
-                    {/*addingUsernameTo3BoxProfile={this.state.addingUsernameTo3BoxProfile}*/}
-                    {/*usernameHasBeenAddedTo3BoxProfile={this.state.usernameHasBeenAddedTo3BoxProfile}/>*/}
+                {addingUsernameTo3BoxProfile}
             </div>
         )
     }

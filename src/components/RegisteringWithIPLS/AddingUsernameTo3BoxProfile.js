@@ -15,12 +15,8 @@ const AddingUsernameTo3BoxProfile = (props) => (
                 <div className="column is-offset-5"></div>
             </div>
         </div> :
-        <div className="box has-text-centered">
-            <p>BOOM.</p>
-
-            <br/>
-
-            <p>It's been done.</p>
+        <div className="box has-text-centered margin-bottom-md">
+            <p>Your username has been successfully pinned to your 3Box public storage</p>
         </div>
 );
 
