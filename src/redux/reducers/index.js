@@ -2,7 +2,7 @@ import {
     SET_3BOX_PROFILE,
     SET_ACCOUNTS,
     SET_CONTRACTS,
-    SET_ISLOGGEDINTO3BOX, SET_REGISTERED_USER,
+    SET_ISLOGGEDINTO3BOX, SET_REGISTERED_USER, SET_SEARCH_USER_PROFILE,
     SET_WEB3
 } from "../constants/action-types";
 
@@ -12,7 +12,8 @@ const initialState = {
     contracts: {},
     isLoggedInTo3Box: null,
     threeBoxProfile: null,
-    registeredUser: null
+    registeredUser: null,
+    searchedUserProfile: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -50,6 +51,12 @@ function rootReducer(state = initialState, action) {
     if (action.type === SET_REGISTERED_USER) {
         return Object.assign({}, state, {
             registeredUser: action.payload
+        });
+    }
+
+    if (action.type === SET_SEARCH_USER_PROFILE) {
+        return Object.assign({}, state, {
+            searchedUserProfile: action.payload
         });
     }
 

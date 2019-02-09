@@ -2,7 +2,9 @@ import {
     SET_3BOX_PROFILE,
     SET_ACCOUNTS,
     SET_CONTRACTS,
-    SET_ISLOGGEDINTO3BOX, SET_REGISTERED_USER,
+    SET_ISLOGGEDINTO3BOX,
+    SET_REGISTERED_USER,
+    SET_SEARCH_USER_PROFILE,
     SET_WEB3
 } from '../constants/action-types';
 
@@ -28,4 +30,8 @@ export function setContracts(payload) {
 
 export function setRegisteredUser(payload) {
     return { type: SET_REGISTERED_USER, payload}
+}
+
+export function setSearchUserProfile(payload) {
+    return { type: SET_SEARCH_USER_PROFILE, payload}
 }

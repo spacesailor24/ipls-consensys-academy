@@ -1,11 +1,8 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
 
-// import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-// import { faIgloo } from '@fortawesome/free-solid-svg-icons';
-// import { faGithub } from '@fortawesome/free-regular-svg-icons';
 
 const Header = (props) => (
     <section className="hero is-small">
@@ -21,17 +18,6 @@ const Header = (props) => (
                       </a>
                     </span>
                 </div>
-            </div>
-        </div>
-
-        <div className="hero-body ">
-            <div className="container has-text-centered">
-                <h1 className="title text-color-off-white">
-                    IPLS
-                </h1>
-                <h2 className="subtitle text-color-off-white">
-                    The Interplanetary Look-up Service
-                </h2>
             </div>
         </div>
 
@@ -57,20 +43,6 @@ const Header = (props) => (
                             <Link to="/registering-with-ipls">
                                 <span className={`${props.location.pathname === '/registering-with-ipls' ? '' : 'text-color-off-white'}`}>
                                     Registering with IPLS
-                                </span>
-                            </Link>
-                        </li>
-                        <li className={`${props.location.pathname === '/your-profile' ? 'is-active' : ''}`}>
-                            <Link to="/your-profile">
-                                <span className={`${props.location.pathname === '/your-profile' ? '' : 'text-color-off-white'}`}>
-                                    Your Profile
-                                </span>
-                            </Link>
-                        </li>
-                        <li className={`${props.location.pathname === '/your-contacts-list' ? 'is-active' : ''}`}>
-                            <Link to="/your-contacts-list">
-                                <span className={`${props.location.pathname === '/your-contacts-list' ? '' : 'text-color-off-white'}`}>
-                                    Your Contacts List
                                 </span>
                             </Link>
                         </li>

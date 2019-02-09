@@ -21,8 +21,6 @@ const UserHasBeenRegistered = (props) => (
         <p>{props.registeredUser.threeBoxDID}</p>
 
         <br/>
-
-        <p>How do you feel?</p>
     </div>
 );
 
