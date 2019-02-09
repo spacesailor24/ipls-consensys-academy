@@ -1,0 +1,51 @@
+@import 'themeColors';
+
+@import '~bulma/bulma';
+//@import '~bulma-extensions/src/sass/index';
+
+$theme-font: Arial, Helvetica, sans-serif;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font: $theme-font;
+  background-color: $secondary;
+}
+
+.topHeader {
+  margin-top: 10px;
+}
+
+.text-color-off-white {
+  color: $off-white;
+}
+
+.margin-bottom-md {
+  margin-bottom: 10px;
+}
+
+.tabs li.is-active a {
+  color: #5DA2E3 !important;
+}
+
+.box {
+  background-color: $off-white !important;
+}
+
+hr {
+  background-color: $secondary-light !important;
+}
+
+.spinner {
+  border: 16px solid $off-white;
+  border-top: 16px solid $secondary;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -13,12 +13,16 @@ module.exports = {
                 options: { presets: ["@babel/env"] }
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+                test:/\.(s*)css$/,
+                use:['style-loader','css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: "file-loader"
             }
         ]
     },
-    resolve: { extensions: ["*", ".js", ".jsx"] },
+    resolve: { extensions: ["*", ".js", ".jsx", ".json"] },
     output: {
         path: path.resolve(__dirname, "dist/"),
         publicPath: "/dist/",
@@ -28,7 +32,8 @@ module.exports = {
         contentBase: path.join(__dirname, "public/"),
         port: 3000,
         publicPath: "http://localhost:3000/dist/",
-        hotOnly: true
+        hotOnly: true,
+        historyApiFallback: true
     },
     plugins: [new webpack.HotModuleReplacementPlugin()]
 };
